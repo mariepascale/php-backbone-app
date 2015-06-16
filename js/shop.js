@@ -1,4 +1,4 @@
-var MessageModel = Backbone.Model.extend({
+var ShopModel = Backbone.Model.extend({
     urlRoot : '../api/shop.php',
     defaults: {
         brand: "Default Brand",
@@ -7,7 +7,7 @@ var MessageModel = Backbone.Model.extend({
     }
 });
 
-var MessageView = Backbone.View.extend({
+var ShopView = Backbone.View.extend({
 
     template:_.template($('#backbone-template').html()),
 
@@ -17,21 +17,21 @@ var MessageView = Backbone.View.extend({
     }
 });
 
-var MessageRouter = Backbone.Router.extend({
+var ShopRouter = Backbone.Router.extend({
     routes:{
-        "": "displayMessage"
+        "": "displayShop"
     },
-    displayMessage: function() {
-        var messageModel = new MessageModel();
+    displayShop: function() {
+        var shopModel = new ShopModel();
 
-        var messageView = new MessageView({model:messageModel});
-        messageModel.fetch({
+        var shopView = new ShopView({model:shopModel});
+        shopModel.fetch({
             success: function () {
-                $('#container').html(messageView.render().el);
+                $('#container').html(shopView.render().el);
             }
         });
     }
 });
 
-var messageRouter  = new MessageRouter();
+var shopRouter  = new ShopRouter();
 Backbone.history.start();
