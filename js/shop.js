@@ -1,13 +1,15 @@
 var MessageModel = Backbone.Model.extend({
     urlRoot : '../api/shop.php',
     defaults: {
-        message: "Text Message"
+        brand: "Default Brand",
+        category: "Default Category",
+        price: "Default Price"
     }
 });
 
 var MessageView = Backbone.View.extend({
 
-    template:_.template($('#tpl-hello-backbone').html()),
+    template:_.template($('#backbone-template').html()),
 
     render:function (eventName) {
         $(this.el).html(this.template(this.model.toJSON()));
@@ -25,7 +27,7 @@ var MessageRouter = Backbone.Router.extend({
         var messageView = new MessageView({model:messageModel});
         messageModel.fetch({
             success: function () {
-                $('#msg').html(messageView.render().el);
+                $('#container').html(messageView.render().el);
             }
         });
     }

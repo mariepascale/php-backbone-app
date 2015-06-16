@@ -2,16 +2,27 @@
 <html>
 <head>
     <title>PHP Backbone.js Example</title>
+    <style>
+        ul {list-style: none;}
+        ul > li {display: inline-block; padding-top: 10px; padding-left: 50px;}
+    </style>
 </head>
 <body>
 
-    <!-- This is the boilerplate -->
+    <div id="container"></div>
 
-    <div id="msg"></div>
-
-    <!-- Templates -->
-    <script type="text/template" id="tpl-hello-backbone">
-        <%= message %>
+    <script type="text/template" id="backbone-template">
+        <ul class="shop-grid"> 
+            <% if (shop) {
+                _.each(shop, function (data) { %>
+                    <li class="shop-grid__item">
+                        Brand: <%- data.brand %><br />
+                        Category: <%- data.category %><br />
+                        Price: <%- data.price %><br />
+                    </li>
+                <% });
+            } %>
+        </ul>
     </script>
 
     <!-- JavaScript -->
